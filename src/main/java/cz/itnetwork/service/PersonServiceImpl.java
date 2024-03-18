@@ -44,6 +44,12 @@ public class PersonServiceImpl implements PersonService {
     @Autowired
     private PersonRepository personRepository;
 
+    @Autowired
+    private InvoiceRepository invoiceRepository;
+
+    @Autowired
+    private InvoiceMapper invoiceMapper;
+
     public PersonDTO addPerson(PersonDTO personDTO) {
         PersonEntity entity = personMapper.toEntity(personDTO);
         entity = personRepository.save(entity);
@@ -54,10 +60,7 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public void removePerson(long personId) {
         try {
-            PersonEntity person = fetchPersonById(personId);
-            person.setHidden(true);
-
-            personRepository.save(person);
+            setPersonHidden(true, personId);
         } catch (NotFoundException ignored) {
             // The contract in the interface states, that no exception is thrown, if the entity is not found.
         }
@@ -80,11 +83,29 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public PersonDTO editPerson(long personId, PersonDTO personDTO){
-        PersonEntity person = fetchPersonById(personId);
-        person.setHidden(true);
-
-        personRepository.save(person);
+        setPersonHidden(true, personId);
         return addPerson(personDTO);
+    }
+
+    @Override
+    public List<InvoiceDTO> invoicesBySeller(String personIdNum) {
+        return personRepository.findByIdentificationNumber(personIdNum)
+                .stream()
+                .map(PersonEntity::getSales)
+                .flatMap(java.util.Collection::stream)
+                .map(y -> invoiceMapper.toDTO(y))
+                .collect(Collectors.toList());
+
+    }
+
+    @Override
+    public List<InvoiceDTO> invoicesByBuyer(String personIdNum) {
+        return personRepository.findByIdentificationNumber(personIdNum)
+                .stream()
+                .map(PersonEntity::getPurchases)
+                .flatMap(java.util.Collection::stream)
+                .map(y -> invoiceMapper.toDTO(y))
+                .collect(Collectors.toList());
     }
 
     // region: Private methods
@@ -99,6 +120,12 @@ public class PersonServiceImpl implements PersonService {
     private PersonEntity fetchPersonById(long id) {
         return personRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Person with id " + id + " wasn't found in the database."));
+    }
+
+    private void setPersonHidden(boolean value, long personId){
+        PersonEntity person = fetchPersonById(personId);
+        person.setHidden(value);
+        personRepository.save(person);
     }
     // endregion
 }

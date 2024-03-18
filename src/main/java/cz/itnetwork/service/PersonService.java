@@ -33,4 +33,8 @@ public interface PersonService {
     PersonDTO getPersonById(long id);
 
     PersonDTO editPerson(long personId, PersonDTO personDTO);
+
+    List<InvoiceDTO> invoicesBySeller(String personIdNum);
+
+    List<InvoiceDTO> invoicesByBuyer(String personIdNum);
 }

@@ -4,6 +4,8 @@ import cz.itnetwork.dto.InvoiceDTO;
 import cz.itnetwork.entity.InvoiceEntity;
 import org.mapstruct.Mapper;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface InvoiceMapper {
 
