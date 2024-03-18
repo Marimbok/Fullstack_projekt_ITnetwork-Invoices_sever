@@ -1,0 +1,106 @@
+{
+	"info": {
+		"_postman_id": "58161310-dbcb-4116-807a-20dbc4792e85",
+		"name": "Invoice starter collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19516935"
+	},
+	"item": [
+		{
+			"name": "Vytvoření osoby",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"ITnetwork s.r.o.\",\r\n    \"identificationNumber\": \"05861381\",\r\n    \"taxNumber\": \"CZ05861381\",\r\n    \"accountNumber\": \"123456789\",\r\n    \"bankCode\": \"5500\",\r\n    \"iban\": \"CZ000123456789\",\r\n    \"telephone\": \"+420 123 123 123\",\r\n    \"mail\": \"redakce@itnetwork.cz\",\r\n    \"street\": \"Karlovo náměstí 290/16, Nové Město (Praha 2)\",\r\n    \"zip\": \"120 00\",\r\n    \"city\": \"Praha\",\r\n    \"country\": \"CZECHIA\",\r\n    \"note\": \"Největší IT akademie v Česku.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/persons",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"persons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Výpis osob",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/persons",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"persons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Výpis detailu osoby",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/persons/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"persons",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Smazání osoby",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"ITnetwork s.r.o. 22\",\r\n    \"identificationNumber\": \"05861381\",\r\n    \"taxNumber\": \"CZ05861381\",\r\n    \"accountNumber\": \"123456789\",\r\n    \"bankCode\": \"5500\",\r\n    \"iban\": \"CZ000123456789\",\r\n    \"telephone\": \"+420 123 123 123\",\r\n    \"mail\": \"redakce@itnetwork.cz\",\r\n    \"street\": \"Karlovo náměstí 290/16, Nové Město (Praha 2)\",\r\n    \"zip\": \"120 00\",\r\n    \"city\": \"Praha\",\r\n    \"country\": \"CZECHIA\",\r\n    \"note\": \"Největší IT akademie v Česku.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/persons/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"persons",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
