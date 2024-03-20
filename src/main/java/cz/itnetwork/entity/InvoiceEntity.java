@@ -1,5 +1,6 @@
 package cz.itnetwork.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,9 +21,11 @@ public class InvoiceEntity {
     private int invoiceNumber;
 
     @Column(nullable = false)
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date issued;
 
     @Column(nullable = false)
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dueDate;
 
     @Column(nullable = false)

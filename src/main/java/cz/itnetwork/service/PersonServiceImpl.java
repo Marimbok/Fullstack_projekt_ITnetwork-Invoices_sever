@@ -29,6 +29,7 @@ import cz.itnetwork.entity.PersonEntity;
 import cz.itnetwork.entity.repository.InvoiceRepository;
 import cz.itnetwork.entity.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
 
@@ -108,7 +109,6 @@ public class PersonServiceImpl implements PersonService {
                 .collect(Collectors.toList());
     }
 
-    // region: Private methods
     /**
      * <p>Attempts to fetch a person.</p>
      * <p>In case a person with the passed [id] doesn't exist a [{@link org.webjars.NotFoundException}] is thrown.</p>
@@ -117,10 +117,13 @@ public class PersonServiceImpl implements PersonService {
      * @return Fetched entity
      * @throws org.webjars.NotFoundException In case a person with the passed [id] isn't found
      */
-    private PersonEntity fetchPersonById(long id) {
+    @Override
+    public PersonEntity fetchPersonById(long id) {
         return personRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Person with id " + id + " wasn't found in the database."));
     }
+
+    // region: Private methods
 
     private void setPersonHidden(boolean value, long personId){
         PersonEntity person = fetchPersonById(personId);

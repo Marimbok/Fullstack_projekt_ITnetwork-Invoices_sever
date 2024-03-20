@@ -13,4 +13,6 @@ public interface InvoiceService {
     List<InvoiceDTO> getAll();
     InvoiceDTO getInvoiceById(long id);
 
+    InvoiceDTO editInvoice(long invoiceId, InvoiceDTO invoiceDTO);
+
 }

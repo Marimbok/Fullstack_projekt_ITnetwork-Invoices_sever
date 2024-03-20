@@ -2,6 +2,7 @@ package cz.itnetwork.service;
 
 import cz.itnetwork.dto.InvoiceDTO;
 import cz.itnetwork.dto.PersonDTO;
+import cz.itnetwork.entity.PersonEntity;
 
 import java.util.List;
 
@@ -37,4 +38,6 @@ public interface PersonService {
     List<InvoiceDTO> invoicesBySeller(String personIdNum);
 
     List<InvoiceDTO> invoicesByBuyer(String personIdNum);
+
+    PersonEntity fetchPersonById(long id);
 }
