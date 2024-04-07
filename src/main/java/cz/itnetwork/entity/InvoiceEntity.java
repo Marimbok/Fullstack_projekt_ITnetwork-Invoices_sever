@@ -18,7 +18,13 @@ public class InvoiceEntity {
     private Long id;
 
     @Column(nullable = false)
-    private int invoiceNumber;
+    private long invoiceNumber;
+
+    @ManyToOne
+    private PersonEntity seller;
+
+    @ManyToOne
+    private PersonEntity buyer;
 
     @Column(nullable = false)
     @JsonFormat(pattern = "yyyy-MM-dd")
@@ -36,12 +42,4 @@ public class InvoiceEntity {
     private int vat;
 
     private String note;
-
-
-    @ManyToOne
-    private PersonEntity buyer;
-
-    @ManyToOne
-    private PersonEntity seller;
-
 }
