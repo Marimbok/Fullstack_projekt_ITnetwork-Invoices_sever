@@ -4,11 +4,12 @@ import cz.itnetwork.dto.InvoiceStatisticDTO;
 import cz.itnetwork.entity.InvoiceEntity;
 import cz.itnetwork.entity.PersonEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface InvoiceRepository extends JpaRepository<InvoiceEntity, Long> {
+public interface InvoiceRepository extends JpaRepository<InvoiceEntity, Long>, JpaSpecificationExecutor<InvoiceEntity> {
 
     List<InvoiceEntity> findByBuyer(PersonEntity buyer);
 

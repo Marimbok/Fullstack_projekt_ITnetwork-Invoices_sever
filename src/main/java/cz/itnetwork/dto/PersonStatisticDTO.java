@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class PersonStatisticDTO {
 
-    private long personId;
+    private Long personId;
 
     private String personName;
 

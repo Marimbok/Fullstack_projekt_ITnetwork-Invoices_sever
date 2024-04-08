@@ -1,6 +1,7 @@
 package cz.itnetwork.service;
 
 import cz.itnetwork.dto.InvoiceDTO;
+import cz.itnetwork.dto.InvoiceFilter;
 import cz.itnetwork.dto.InvoiceStatisticDTO;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public interface InvoiceService {
 
     void removeInvoice(long id);
 
-    List<InvoiceDTO> getAll();
+    List<InvoiceDTO> getAll(InvoiceFilter invoiceFilter);
     InvoiceDTO getInvoiceById(long id);
 
     InvoiceDTO editInvoice(long invoiceId, InvoiceDTO invoiceDTO);
