@@ -85,6 +85,7 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public PersonDTO editPerson(long personId, PersonDTO personDTO){
         setPersonHidden(true, personId);
+        personDTO.setId(0L);
         return addPerson(personDTO);
     }
 
