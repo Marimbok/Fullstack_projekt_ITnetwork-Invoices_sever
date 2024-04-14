@@ -13,6 +13,7 @@ public interface InvoiceService {
     void removeInvoice(long id);
 
     List<InvoiceDTO> getAll(InvoiceFilter invoiceFilter);
+
     InvoiceDTO getInvoiceById(long id);
 
     InvoiceDTO editInvoice(long invoiceId, InvoiceDTO invoiceDTO);

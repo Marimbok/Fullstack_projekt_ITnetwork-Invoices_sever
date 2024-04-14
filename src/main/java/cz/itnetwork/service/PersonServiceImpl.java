@@ -32,7 +32,7 @@ import cz.itnetwork.entity.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
-
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -85,7 +85,7 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public PersonDTO editPerson(long personId, PersonDTO personDTO){
         setPersonHidden(true, personId);
-        personDTO.setId(0L);
+        personDTO.setId(null);
         return addPerson(personDTO);
     }
 
@@ -94,8 +94,8 @@ public class PersonServiceImpl implements PersonService {
         return personRepository.findByIdentificationNumber(personIdNum)
                 .stream()
                 .map(PersonEntity::getSales)
-                .flatMap(java.util.Collection::stream)
-                .map(y -> invoiceMapper.toDTO(y))
+                .flatMap(Collection::stream)
+                .map(invoiceEntity -> invoiceMapper.toDTO(invoiceEntity))
                 .collect(Collectors.toList());
 
     }
@@ -105,8 +105,8 @@ public class PersonServiceImpl implements PersonService {
         return personRepository.findByIdentificationNumber(personIdNum)
                 .stream()
                 .map(PersonEntity::getPurchases)
-                .flatMap(java.util.Collection::stream)
-                .map(y -> invoiceMapper.toDTO(y))
+                .flatMap(Collection::stream)
+                .map(invoiceEntity -> invoiceMapper.toDTO(invoiceEntity))
                 .collect(Collectors.toList());
     }
 
