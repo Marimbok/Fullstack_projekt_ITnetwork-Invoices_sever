@@ -18,29 +18,29 @@ public class InvoiceController {
     @Autowired
     private InvoiceService invoiceService;
 
-    @PostMapping("/invoices")
+    @PostMapping({"/invoices", "/invoices/"})
     public InvoiceDTO addInvoice(@RequestBody InvoiceDTO invoiceDTO){
         return invoiceService.addInvoice(invoiceDTO);
     }
 
-    @GetMapping("/invoices")
+    @GetMapping({"/invoices", "/invoices/"})
     public List<InvoiceDTO> getInvoices(InvoiceFilter invoiceFilter){
         return invoiceService.getAll(invoiceFilter);
     }
 
-    @DeleteMapping("/invoices/{invoiceId}")
+    @DeleteMapping({"/invoices/{invoiceId}", "/invoices/{invoiceId}/"})
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void deleteInvoice(@PathVariable Long invoiceId) {
         invoiceService.removeInvoice(invoiceId);
 
     }
 
-    @GetMapping("/invoices/{invoiceId}")
+    @GetMapping({"/invoices/{invoiceId}", "/invoices/{invoiceId}/"})
     public InvoiceDTO getInvoice(@PathVariable Long invoiceId) {
         return invoiceService.getInvoiceById(invoiceId);
     }
 
-    @PutMapping({"/invoices/{invoiceId}"})
+    @PutMapping({"/invoices/{invoiceId}", "/invoices/{invoiceId}/"})
     public InvoiceDTO editInvoice(@PathVariable Long invoiceId, @RequestBody InvoiceDTO invoiceDTO){
         invoiceDTO.setId(invoiceId);
         return invoiceService.editInvoice(invoiceId, invoiceDTO);

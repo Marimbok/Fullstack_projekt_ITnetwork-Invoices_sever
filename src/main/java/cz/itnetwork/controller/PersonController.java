@@ -38,38 +38,38 @@ public class PersonController {
     @Autowired
     private PersonService personService;
 
-    @PostMapping("/persons")
+    @PostMapping({"/persons", "/persons/"})
     public PersonDTO addPerson(@RequestBody PersonDTO personDTO) {
         return  personService.addPerson(personDTO);
     }
 
-    @GetMapping("/persons")
+    @GetMapping({"/persons", "/persons/"})
     public List<PersonDTO> getPersons() {
         return personService.getAll();
     }
 
-    @DeleteMapping("/persons/{personId}")
+    @DeleteMapping({"/persons/{personId}", "/persons/{personId}"})
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void deletePerson(@PathVariable Long personId) {
         personService.removePerson(personId);
     }
 
-    @GetMapping("/persons/{personId}")
+    @GetMapping({"/persons/{personId}", "/persons/{personId}/"})
     public PersonDTO getPerson(@PathVariable Long personId) {
         return personService.getPersonById(personId);
     }
 
-    @PutMapping({"/persons/{personId}"})
+    @PutMapping({"/persons/{personId}", "/persons/{personId}/"})
     public PersonDTO editPerson(@PathVariable Long personId, @RequestBody PersonDTO personDTO) {
         return personService.editPerson(personId, personDTO);
     }
 
-    @GetMapping("/identification/{personIdNum}/sales")
+    @GetMapping({"/identification/{personIdNum}/sales", "/identification/{personIdNum}/sales/"})
     public List<InvoiceDTO> getPersonsSales(@PathVariable String personIdNum) {
         return personService.invoicesBySeller(personIdNum);
     }
 
-    @GetMapping("identification/{personIdNum}/purchases")
+    @GetMapping({"identification/{personIdNum}/purchases", "identification/{personIdNum}/purchases/"})
     public List<InvoiceDTO> getPersonsPurchases(@PathVariable String personIdNum) {
         return personService.invoicesByBuyer(personIdNum);
     }
