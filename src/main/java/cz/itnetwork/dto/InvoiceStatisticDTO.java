@@ -9,10 +9,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class InvoiceStatisticDTO {
 
-    private long currentYearSum;
+    private Long currentYearSum;
 
-    private long allTimeSum;
+    private Long allTimeSum;
 
-    private long invoicesCount;
+    private Long invoicesCount;
 
 }

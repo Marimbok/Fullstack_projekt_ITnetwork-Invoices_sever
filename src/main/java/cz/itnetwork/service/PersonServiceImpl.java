@@ -61,9 +61,9 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public void removePerson(long personId) {
         try {
-            setPersonHidden(true, personId);
-        } catch (NotFoundException ignored) {
-            // The contract in the interface states, that no exception is thrown, if the entity is not found.
+            setPersonHidden(personId);
+        } catch (Exception e) {
+            throw new NotFoundException("Person with id " + personId + " wasn't found in the database.");
         }
     }
 
@@ -84,7 +84,8 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public PersonDTO editPerson(long personId, PersonDTO personDTO){
-        setPersonHidden(true, personId);
+        PersonEntity personEntity = fetchPersonById(personId);
+        setPersonHidden(personEntity.getId());
         personDTO.setId(null);
         return addPerson(personDTO);
     }
@@ -131,9 +132,9 @@ public class PersonServiceImpl implements PersonService {
 
     // region: Private methods
 
-    private void setPersonHidden(boolean value, long personId){
+    private void setPersonHidden(long personId){
         PersonEntity person = fetchPersonById(personId);
-        person.setHidden(value);
+        person.setHidden(true);
         personRepository.save(person);
     }
     // endregion
