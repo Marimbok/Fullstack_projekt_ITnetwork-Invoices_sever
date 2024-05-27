@@ -2,19 +2,16 @@ package cz.itnetwork.entity.repository;
 
 import cz.itnetwork.dto.InvoiceStatisticDTO;
 import cz.itnetwork.entity.InvoiceEntity;
-import cz.itnetwork.entity.PersonEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 
-import java.util.List;
-
 public interface InvoiceRepository extends JpaRepository<InvoiceEntity, Long>, JpaSpecificationExecutor<InvoiceEntity> {
 
-    List<InvoiceEntity> findByBuyer(PersonEntity buyer);
-
-    List<InvoiceEntity> findBySeller(PersonEntity seller);
-
+    /**
+     * SQL query to get statistics of all invoices.
+     * @return Statistics of all invoices, which contain: this year SUM of prices, all time SUM of prices and number of invoices.
+     */
     @Query("""
             SELECT new cz.itnetwork.dto.InvoiceStatisticDTO(
             ROUND(COALESCE(SUM(actual.price), 0), 2),

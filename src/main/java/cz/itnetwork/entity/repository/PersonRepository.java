@@ -33,6 +33,10 @@ public interface PersonRepository extends JpaRepository<PersonEntity, Long> {
     List<PersonEntity> findByHidden(boolean hidden);
     List<PersonEntity> findByIdentificationNumber(String identificationNumber);
 
+    /**
+     * SQL query to get person statistics by individual person.
+     * @return List of persons with their statistics, which contain: person ID, person name and revenue.
+     */
     @Query(value = """
                    SELECT new cz.itnetwork.dto.PersonStatisticDTO(
                    person.id, person.name, ROUND(COALESCE(SUM(i.price), 0), 2))

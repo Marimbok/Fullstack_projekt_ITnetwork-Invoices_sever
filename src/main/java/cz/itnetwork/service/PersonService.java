@@ -34,13 +34,38 @@ public interface PersonService {
 
     PersonDTO getPersonById(long id);
 
+    /**
+     * Edit existing person. After editing method will set origin person as hidden and create new edit person.
+     * @param personId ID of origin person, that user want edit.
+     * @param personDTO DTO of edited person send by user without ID.
+     * @return DTO of edited person with new ID.
+     */
     PersonDTO editPerson(long personId, PersonDTO personDTO);
 
+    /**
+     * Fetch all invoices with same ID number of seller.
+     * @param personIdNum ID number of seller, which invoices we want get.
+     * @return List of all invoices with same seller.
+     */
     List<InvoiceDTO> invoicesBySeller(String personIdNum);
 
+    /**
+     * Fetch all invoices with same ID number of buyer.
+     * @param personIdNum ID number of buyer, which invoices we want get.
+     * @return List of all invoices with same buyer.
+     */
     List<InvoiceDTO> invoicesByBuyer(String personIdNum);
 
+    /**
+     * Fetch person by ID.
+     * @param id ID of wanted person.
+     * @return Entity of fetched person.
+     */
     PersonEntity fetchPersonById(long id);
 
+    /**
+     * SUM of persons sales.
+     * @return List of people with individual IDs, names and revenue.
+     */
     List<PersonStatisticDTO> getPersonsStatistics();
 }

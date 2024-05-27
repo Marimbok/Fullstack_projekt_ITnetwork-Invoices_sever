@@ -76,8 +76,16 @@ public class InvoiceServiceImpl implements InvoiceService {
         return invoiceRepository.getInvoiceStatistics();
     }
 
+    // region: Private methods
+
+    /**
+     * Fetch invoice by ID. In case, where invoice is not found, exception will be thrown with message.
+     * @param id ID of invoice to find.
+     * @return  Entity of fetch invoice.
+     */
     private InvoiceEntity fetchInvoiceById(long id) {
         return invoiceRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Invoice with id " + id + " wasn't found in the database."));
     }
+    // endregion
 }
