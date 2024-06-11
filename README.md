@@ -1,1 +1,1 @@
-Tento projekt je připraven k hodnocení
+Projekt pro evidenci faktur a osob/firem. Serverová část v Javě
